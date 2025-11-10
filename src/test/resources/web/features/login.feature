@@ -1,5 +1,6 @@
 @Login
   Feature: Login
+  
   Background:
     Given que el usuario se encuentra en la pagina de login de saucedemo
   @LoginExitoso
@@ -15,4 +16,4 @@
     And el usuario completa el campo password secret_sauce
     And el usuario hace clic en el boton Login
     Then el usuario visualiza el mensaje de error "Epic sadface: Sorry, this user has been locked out."
-    
+  
