@@ -6,6 +6,7 @@ import junit.framework.Assert;
 import lippia.web.constants.LoginConstants;
 
 
+
 import static com.crowdar.core.actions.WebActionManager.navigateTo;
 import static lippia.web.constants.LoginConstants.*;
 
@@ -29,6 +30,12 @@ public class LoginServices extends ActionManager {
 
     public static void verificarTituloProductos(){
         Assert.assertTrue("El elemento no se a encontrado",isPresent(LoginConstants.TITLE_XPATH));
+    }
+    public static void verificarMensajeErrorLogin(String p_msj){
+        Assert.assertEquals("El mensaje no coincide con el esperado", p_msj, getElement(MESSAGE_ERROR_XPATH).getText());
+
+
+
     }
 
 }

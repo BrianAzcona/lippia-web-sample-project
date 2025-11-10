@@ -17,14 +17,14 @@ public class LoginSteps extends PageSteps {
         LoginServices.navWeb();
     }
 
-    @When("el usuario completa el campo ussername {string}")
+    @When("el usuario completa el campo username (.*)")
     public void elUsuarioCompletaElCampoUssername(String p_user) {
         LoginServices.ingresarUsuario(p_user);
     }
 
 
-    @And("el usuario completa el campo password {string}")
-    public void elUsuarioCompletaElCampoPassword(String p_pass) {
+    @And("el usuario completa el campo password (.*)")
+    public void elUsuarioCompletaElCampoPassword(String p_pass){
         LoginServices.ingresarPassword(p_pass);
     }
 
@@ -36,5 +36,10 @@ public class LoginSteps extends PageSteps {
     @Then("el usuario visualiza el titulo de la pagina de productos")
     public void elUsuarioVisualizaElTituloDeLaPaginaDeProductos() {
         LoginServices.verificarTituloProductos();
+    }
+
+    @Then("el usuario visualiza el mensaje de error {string}")
+    public void elUsuarioVisualizaElMensajeDeError(String p_msj) {
+        LoginServices.verificarMensajeErrorLogin(p_msj);
     }
 }
