@@ -12,18 +12,18 @@ import lippia.web.services.LoginServices;
 public class LoginSteps extends PageSteps {
 
 
-    @Given("que el usuario se encuentra en la pagina de login de saucedemo")
+    @Given("que el usuario se encuentra en la pagina de login de Saucedemo")
     public void queElUsuarioSeEncuentraEnLaPaginaDeLoginDeSaucedemo() {
         LoginServices.navWeb();
     }
 
-    @When("el usuario completa el campo username (.*)")
+    @When("^el usuario completa el campo username (.*)$")
     public void elUsuarioCompletaElCampoUssername(String p_user) {
         LoginServices.ingresarUsuario(p_user);
     }
 
 
-    @And("el usuario completa el campo password (.*)")
+    @And("^el usuario completa el campo password (.*)$")
     public void elUsuarioCompletaElCampoPassword(String p_pass){
         LoginServices.ingresarPassword(p_pass);
     }
@@ -38,7 +38,7 @@ public class LoginSteps extends PageSteps {
         LoginServices.verificarTituloProductos();
     }
 
-    @Then("el usuario visualiza el mensaje de error {string}")
+    @Then("^el usuario visualiza el mensaje de error (.*)$")
     public void elUsuarioVisualizaElMensajeDeError(String p_msj) {
         LoginServices.verificarMensajeErrorLogin(p_msj);
     }

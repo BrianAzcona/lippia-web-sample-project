@@ -9,7 +9,7 @@ import lippia.web.services.LoginServices;
 
 public class CarritoSteps extends PageSteps{
 
-    @Given("que el usuario inicia sesion exitosamente con el usuario {string}")
+    @Given("^que el usuario inicia sesion exitosamente con el usuario (.*)$")
     public void queElUsuarioIniciaSesionExitosamenteConElUsuario(String p_user) {
         LoginServices.navWeb();
         LoginServices.ingresarUsuario(p_user);
@@ -18,25 +18,25 @@ public class CarritoSteps extends PageSteps{
         LoginServices.verificarTituloProductos();
     }
 
-    @When("el usuario agrega el producto {string} al carrito")
+    @When("^el usuario agrega el producto (.*) al carrito$")
     public void elUsuarioAgregaElProductoAlCarrito(String p_product) {
         CarritoServices.agregarProductoCarrito(p_product);
     }
 
-    @Then("el contador del carrito muestra el numero {string}")
+    @Then("^el contador del carrito muestra el numero (.*)$")
     public void elContadorDelCarritoMuestraElNumero(String p_cantidad) {
         CarritoServices.verificarCarritoProducto(p_cantidad);
     }
 
-    @And("el usuario tiene el producto {string} en el carrito con cantidad {string}")
+    @And("^el usuario tiene el producto (.*) en el carrito con cantidad (.*)$")
     public void elUsuarioTieneElProductoEnElCarrito(String p_product, String p_cantidad) {
         CarritoServices.agregarProductoCarrito(p_product);
         CarritoServices.verificarCarritoProducto(p_cantidad);
     }
 
-    @When("el usuario elimina el producto del carrito")
-    public void elUsuarioEliminaElProductoDelCarrito() {
-        CarritoServices.eliminarProductoCarrito();
+    @When("^el usuario elimina el producto (.*) del carrito$")
+    public void elUsuarioEliminaElProductoDelCarrito(String p_product) {
+        CarritoServices.eliminarProductoCarrito(p_product);
     }
 
     @Then("el carrito no posee productos")
