@@ -3,6 +3,7 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import junit.framework.Assert;
 import lippia.web.constants.CarritoConstants;
+import lippia.web.constants.CompraConstants;
 
 
 public class CarritoServices extends ActionManager {
@@ -16,11 +17,22 @@ public class CarritoServices extends ActionManager {
         return String.format(CarritoConstants.BUTTON_REMOVE_CART_TEMPLATE, productId);
     }
 
+    private static String getProductPriceLocator(String productName) {
+        return String.format(CarritoConstants.PRODUCT_PRICE_XPATH, productName);
+    }
+
+
 
     public static void agregarProductoCarrito(String p_producto){
-        Assert.assertTrue("El producto esta comprado",isPresent(getAddToCartLocator(p_producto)));
+        Assert.assertTrue("No esta disponible para agregar",isPresent(getAddToCartLocator(p_producto)));
+        String precio = getText(getProductPriceLocator(p_producto));
+        MemoryService.save(p_producto + "_precio", precio);
+
         click(getAddToCartLocator(p_producto));
+        Assert.assertTrue("El producto NO se agrego al carrito", isPresent(getRemoveFromCartLocator(p_producto)));
+
     }
+
 
     public static void verificarCarritoProducto(String p_cantidad){
         Assert.assertTrue("El contador del carrito no esta visible", isPresent(CarritoConstants.CART_BADGE_XPATH));

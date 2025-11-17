@@ -9,11 +9,11 @@ import lippia.web.services.LoginServices;
 
 public class CarritoSteps extends PageSteps{
 
-    @Given("^que el usuario inicia sesion exitosamente con el usuario (.*)$")
-    public void queElUsuarioIniciaSesionExitosamenteConElUsuario(String p_user) {
+    @Given("^que el usuario inicia sesion exitosamente con el usuario (.*) y contraseña (.*)$")
+    public void queElUsuarioIniciaSesionExitosamenteConElUsuarioYContrasenia(String p_user, String p_pass) {
         LoginServices.navWeb();
         LoginServices.ingresarUsuario(p_user);
-        LoginServices.ingresarPassword("secret_sauce");
+        LoginServices.ingresarPassword(p_pass);
         LoginServices.clikLogin();
         LoginServices.verificarTituloProductos();
     }
