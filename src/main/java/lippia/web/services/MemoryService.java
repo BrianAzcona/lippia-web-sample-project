@@ -17,4 +17,11 @@ public class MemoryService {
     public static void clear() {
         data.clear();
     }
+
+    public static double getTotalPrice() {
+        return data.values().stream()
+                .filter(value -> value.contains("$"))
+                .mapToDouble(value -> Double.parseDouble(value.replace("$", "").trim()))
+                .sum();
+    }
 }

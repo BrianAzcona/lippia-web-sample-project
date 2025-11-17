@@ -18,6 +18,8 @@ public class CompraConstants {
     public static final String TITLE_OVERVIEW_XPATH = "xpath://span[@class='title' and contains(text(), 'Checkout: Overview')]";
     public static final String BUTTON_FINISH_XPATH = "xpath://*[@id=\"finish\"]";
     public static final String MESSAGE_FINISH_XPATH = "xpath://*[@id=\"checkout_complete_container\"]/h2";
+    public static final String TOTAL_PRICE_OVERVIEW_XPATH = "xpath://*[@id=\"checkout_summary_container\"]/div/div[2]/div[6]";
+
 
 }
 

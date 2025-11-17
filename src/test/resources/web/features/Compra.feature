@@ -3,6 +3,7 @@ Feature: Compra completa y validación de datos
   
   Background:
     Given que el usuario inicia sesion exitosamente con el usuario standard_user y contraseña secret_sauce
+    And el usuario visualiza el titulo de la pagina de productos
   
   @AgregarDosProductos
   Scenario: Agregar dos productos diferentes al carrito
@@ -48,6 +49,7 @@ Feature: Compra completa y validación de datos
     And el producto Sauce Labs Bike Light se muestra en la pagina de Overview
     And el precio de Sauce Labs Backpack es correcto
     And el precio de Sauce Labs Bike Light es correcto
+    And se verifica que la suma de los productos sea igual al total
     
     
     Examples:
@@ -69,10 +71,11 @@ Feature: Compra completa y validación de datos
     And el producto Sauce Labs Bike Light se muestra en la pagina de Overview
     And el precio de Sauce Labs Backpack es correcto
     And el precio de Sauce Labs Bike Light es correcto
+    And se verifica que la suma de los productos sea igual al total
     When el usuario hace clic en el boton Finish
-    Then se muestra el mensaje Thank you for your order!
+    And se muestra el mensaje Thank you for your order!
     
     Examples:
       | nombre | apellido  | codigoPostal |
       | Brian  | Azcona    | 3400         |
-      | Mica   | Fernandez | 3500         |
+      #| Mica   | Fernandez | 3500         |

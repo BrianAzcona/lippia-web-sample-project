@@ -18,10 +18,6 @@ public class CompraService extends WebActionManager {
         return String.format(CompraConstants.PRODUCT_NAME_OVERVIEW_XPATH, productName);
     }
 
-
-
-
-
     private static String getRemoveFromCartLocator(String productName) {
         String productId = productName.toLowerCase().replace(" ", "-");
         return String.format(CompraConstants.BUTTON_REMOVE_CART_TEMPLATE, productId);
@@ -33,11 +29,11 @@ public class CompraService extends WebActionManager {
     }
 
     public static void verificarProductoCarrito(String p_producto){
-        Assert.assertTrue("El producto no esta en el carrito", isPresent(getProductTitleInCartLocator(p_producto)));
+        Assert.assertTrue("El producto no esta en el carrito", waitPresence(getProductTitleInCartLocator(p_producto)).isDisplayed());
     }
 
     public static void verificarProductoComprado(String p_producto){
-        Assert.assertTrue("El producto no esta comprado", isPresent(getRemoveFromCartLocator(p_producto)));
+        Assert.assertTrue("El producto no esta comprado", waitPresence(getRemoveFromCartLocator(p_producto)).isDisplayed());
     }
     public static void clickCarrito(){
         click(CompraConstants.BUTTON_CART_XPATH);
@@ -85,10 +81,17 @@ public class CompraService extends WebActionManager {
     }
 
     public static void verificarCompra(String p_msj){
-        Assert.assertTrue("No se muestra el mensaje al finalizar la compra", waitVisibility(CompraConstants.MESSAGE_FINISH_XPATH).isDisplayed());
+        Assert.assertTrue("No se muestra el mensaje al finalizar la compra", waitPresence(CompraConstants.MESSAGE_FINISH_XPATH).isDisplayed());
         Assert.assertEquals("El mensaje al finalizar la compra no es el esperado", p_msj, getElement(CompraConstants.MESSAGE_FINISH_XPATH).getText());
     }
 
+    public static void verificarPrecioTotal(){
+        double totalEsperado = MemoryService.getTotalPrice();
+        double totalActual = Double.parseDouble(getText(CompraConstants.TOTAL_PRICE_OVERVIEW_XPATH).replace("Item total: $", "").trim());
+        Assert.assertEquals("El total del carrito no coincide con el total esperado", totalEsperado, totalActual);
+
+
+    }
 
 
 

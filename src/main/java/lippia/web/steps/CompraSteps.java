@@ -93,4 +93,9 @@ public class CompraSteps extends PageSteps {
         CompraService.verificarCompra(p_msj);
 
     }
+
+    @Then("se verifica que la suma de los productos sea igual al total")
+    public void seVerificaQueLaSumaDeLosProductosSeaIgualAlTotal() {
+        CompraService.verificarPrecioTotal();
+    }
 }

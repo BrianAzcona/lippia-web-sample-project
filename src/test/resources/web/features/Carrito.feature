@@ -2,10 +2,7 @@
 Feature: Carrito
   
   Background:
-    Given que el usuario se encuentra en la pagina de login de Saucedemo
-    And el usuario completa el campo username standard_user
-    And el usuario completa el campo password secret_sauce
-    And el usuario hace clic en el boton Login
+    Given que el usuario inicia sesion exitosamente con el usuario standard_user y contraseña secret_sauce
     And el usuario visualiza el titulo de la pagina de productos
   
   @AgregarCarrito

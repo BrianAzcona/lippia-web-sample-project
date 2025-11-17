@@ -15,7 +15,6 @@ public class CarritoSteps extends PageSteps{
         LoginServices.ingresarUsuario(p_user);
         LoginServices.ingresarPassword(p_pass);
         LoginServices.clikLogin();
-        LoginServices.verificarTituloProductos();
     }
 
     @When("^el usuario agrega el producto (.*) al carrito$")

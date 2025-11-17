@@ -31,7 +31,7 @@ public class LoginServices extends ActionManager {
     }
 
     public static void verificarTituloProductos(){
-        Assert.assertTrue("El elemento no se a encontrado",isPresent(LoginConstants.TITLE_XPATH));
+        Assert.assertTrue("El elemento no se a encontrado",waitVisibility(LoginConstants.TITLE_XPATH).isDisplayed());
     }
     public static void verificarMensajeErrorLogin(String p_msj){
         Assert.assertEquals("El mensaje no coincide con el esperado", p_msj, getElement(LoginConstants.MESSAGE_ERROR_XPATH).getText());

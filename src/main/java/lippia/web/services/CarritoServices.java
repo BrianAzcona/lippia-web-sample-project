@@ -3,7 +3,7 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import junit.framework.Assert;
 import lippia.web.constants.CarritoConstants;
-import lippia.web.constants.CompraConstants;
+
 
 
 public class CarritoServices extends ActionManager {
@@ -24,22 +24,22 @@ public class CarritoServices extends ActionManager {
 
 
     public static void agregarProductoCarrito(String p_producto){
-        Assert.assertTrue("No esta disponible para agregar",isPresent(getAddToCartLocator(p_producto)));
+        Assert.assertTrue("No esta disponible para agregar",waitPresence(getAddToCartLocator(p_producto)).isDisplayed());
         String precio = getText(getProductPriceLocator(p_producto));
         MemoryService.save(p_producto + "_precio", precio);
 
         click(getAddToCartLocator(p_producto));
-        Assert.assertTrue("El producto NO se agrego al carrito", isPresent(getRemoveFromCartLocator(p_producto)));
+        Assert.assertTrue("El producto NO se agrego al carrito", waitPresence(getRemoveFromCartLocator(p_producto)).isDisplayed());
 
     }
 
 
     public static void verificarCarritoProducto(String p_cantidad){
-        Assert.assertTrue("El contador del carrito no esta visible", isPresent(CarritoConstants.CART_BADGE_XPATH));
+        Assert.assertTrue("El contador del carrito no esta visible", waitPresence(CarritoConstants.CART_BADGE_XPATH).isDisplayed());
         Assert.assertEquals("El numero del carrito no es el esperado", p_cantidad, getElement(CarritoConstants.CART_BADGE_XPATH).getText());
     }
     public static void eliminarProductoCarrito(String p_producto){
-        Assert.assertTrue("El producto no esta comprado", isPresent(getRemoveFromCartLocator(p_producto)));
+        Assert.assertTrue("El producto no esta comprado", waitPresence(getRemoveFromCartLocator(p_producto)).isDisplayed());
         click(getRemoveFromCartLocator(p_producto));
     }
 
